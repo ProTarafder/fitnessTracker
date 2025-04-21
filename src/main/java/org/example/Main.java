@@ -2,7 +2,7 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
+        //TODO: to be implemented
 
-        System.out.println("Hello, World!");
     }
 }
