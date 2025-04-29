@@ -8,6 +8,7 @@ Data Structures and Object Oriented Programming
 goal comparisons).
 
 ## 2-3.Functionalities & Expected Output
+
 Based on the type of user you are (premium user or free user), the amount of services will change.
 
 **1.Free User**
@@ -23,6 +24,7 @@ iv.Limited view of accomplished workout (when logged)
 
 
 **2.Premium User (Has all the FreeUser services and:)**
+
 i.Monthly reports (summary of burned calories and tracked amount of times they worked out)
 
 ii.Goal comparisons (tracks if the user is meeting their goal using percentage e.g. "You are 30% toward your goal of burning 1000 kcal this month")
@@ -32,7 +34,7 @@ iii.Breakdown of what type of workout has been accomplished (cardio, strength, e
 iv.Export their reports(CSV or text)
 
 
-**3.Admin**
+**3.Admin** (not an actual class though, just implementation to make sure there is an option to upgrade a user)
 
 i.Ugrade the user to premium
 
