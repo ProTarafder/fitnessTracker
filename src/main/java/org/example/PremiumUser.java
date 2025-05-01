@@ -1,8 +1,6 @@
 package org.example;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class PremiumUser extends FreeUser implements Trackable{
 

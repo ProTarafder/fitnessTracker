@@ -1,5 +1,4 @@
 package org.example;
-
 import java.util.Date;
 
 public class StrengthWorkout extends Workout {

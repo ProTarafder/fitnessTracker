@@ -3,6 +3,9 @@ package org.example;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Have small issues to fix
+ */
 public abstract class Workout implements Comparable<Workout>{
     protected String excerciseName;
     protected Date workoutDate;

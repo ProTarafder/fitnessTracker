@@ -29,10 +29,6 @@ public class FreeUser extends User {
         return false;
     }
 
-    /**
-     * Log user's workouts
-     * @param workout workout to log
-     */
     public void logWorkout(Workout workout){
         if (workout == null) throw new IllegalArgumentException("Workout cannot be null");
         workoutHistory.add(workout);

@@ -1,7 +1,7 @@
 package org.example;
 
 /**
- * Abstract User class
+ * Abstract User class (for the bases)
  */
 public abstract class User {
     protected String username;

@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
+        //General main for now
+
         FreeUser user1 = new FreeUser("pro");
         PremiumUser user2 = new PremiumUser("bob");
 
