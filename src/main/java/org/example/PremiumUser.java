@@ -1,42 +1,61 @@
 package org.example;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class PremiumUser extends User implements Trackable{
-    private List<Workout> workoutHistory = new ArrayList<>();
+public class PremiumUser extends FreeUser implements Trackable{
 
     public PremiumUser(String username) {
         super(username);
     }
 
-    public void addWorkout(Workout workout) {
-        //TODO: Add to history
-    }
-
     @Override
     public void setGoal(String goal) {
-        //TODO: Save premium user goal
+        if (goal == null || goal.isEmpty()) {
+            throw new IllegalArgumentException("Goal cannot be empty");
+        }
+        this.goal = goal;
+        System.out.println(username + " set goal to " + goal);
     }
 
     @Override
     public void viewProgressReport(){
-        //TODO: Display detailed progress
+        System.out.println("Progress report for " + username);
+        for (Workout w : workoutHistory) {
+            System.out.println("- " + w.excerciseName + ", " + w.calculateCaloriesBurned() + " kcal");
+        }
+        System.out.println("Total calories burned: " + totalCalories);
     }
 
     @Override
     public void generateReport(){
-        //TODO: Implement detailed report
+        double totalCalories = workoutHistory.stream()
+                .mapToDouble(Workout::calculateCaloriesBurned)
+                .sum();
+        System.out.println("Total calories burned: " + totalCalories);
     }
 
     @Override
     public String generateMonthlyReport(int month, int year) {
-        //TODO: Calculate the calories burned and return it
-        return null;
+        double totalCalories = workoutHistory.stream()
+                .filter(w -> {
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(w.getDate());
+                    return cal.get(Calendar.MONTH) + 1 == month && cal.get(Calendar.YEAR) == year;
+                })
+                .mapToDouble(Workout::calculateCaloriesBurned)
+                .sum();
+        return String.format("%s burn %.2f kcal in %02d/%d", username, totalCalories, year, month);
     }
 
     @Override
     public boolean isOnTrackForGoal(){
-        //TODO: Compare user progress with goal
-        return false;
+        System.out.println("Tracking goal progress for " + username);
+        return true;
+    }
+
+    public void exportReport() throws IOException {
+        //placeholder for file writing later on
     }
 }

@@ -1,8 +1,27 @@
 package org.example;
 
 public interface Trackable {
+    /**
+     *
+     */
     void generateReport();
-    //TODO: Generate a detailed analytics report
+
+    /**
+     *
+     * @param month
+     * @param year
+     * @return
+     */
     String generateMonthlyReport(int month, int year);
-    //TODO: Summarize the workouts for each month
+
+    /**
+     *
+     */
+    void viewProgressReport();
+
+    /**
+     *
+     * @return
+     */
+    boolean isOnTrackForGoal();
 }
