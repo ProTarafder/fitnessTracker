@@ -1,8 +1,11 @@
 package org.example;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 
-public class PremiumUser extends FreeUser implements Trackable{
+public class PremiumUser extends FreeUser implements Trackable {
 
     public PremiumUser(String username) {
         super(username);
@@ -18,20 +21,21 @@ public class PremiumUser extends FreeUser implements Trackable{
     }
 
     @Override
-    public void viewProgressReport(){
+    public void viewProgressReport() {
         System.out.println("Progress report for " + username);
         for (Workout w : workoutHistory) {
-            System.out.println("- " + w.excerciseName + ", " + w.calculateCaloriesBurned() + " kcal");
+            System.out.println("- " + w.excerciseName + ", " + w.workoutDate.toString() + ", " + w.calculateCaloriesBurned() + " kcal");
         }
-        System.out.println("Total calories burned: " + totalCalories);
     }
 
     @Override
-    public void generateReport(){
+    public void generateReport() {
+        System.out.println("Generating report for " + username);
         double totalCalories = workoutHistory.stream()
                 .mapToDouble(Workout::calculateCaloriesBurned)
                 .sum();
         System.out.println("Total calories burned: " + totalCalories);
+        System.out.println("Total workouts" + workoutHistory.size());
     }
 
     @Override
@@ -48,12 +52,29 @@ public class PremiumUser extends FreeUser implements Trackable{
     }
 
     @Override
-    public boolean isOnTrackForGoal(){
+    public boolean isOnTrackForGoal() {
         System.out.println("Tracking goal progress for " + username);
         return true;
     }
 
-    public void exportReport() throws IOException {
-        //placeholder for file writing later on
+    public void exportReport(String filename) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
+            bw.write("Excercise, Date, Calories");
+            for (Workout w : workoutHistory) {
+                System.out.println("- " + w.excerciseName + ", " + w.workoutDate.toString() + ", " + w.calculateCaloriesBurned());
+            }
+            System.out.println("Exported to " + filename);
+        } catch (IOException e) {
+            System.out.println("Error exporting " + filename);
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void addWorkout(Workout workout) {
+        if (workout == null || workout.workoutDate == null) {
+            throw new IllegalArgumentException("Workout or date cannot be null");
+        }
+        workoutHistory.add(workout);
     }
 }

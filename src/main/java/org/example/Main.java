@@ -10,11 +10,11 @@ public class Main {
         PremiumUser user2 = new PremiumUser("bob");
 
         user1.setGoal("Burn 200 kcal");
-        user1.logWorkout(new CardioWorkout("Jogging", new Date(),20));
+        user1.logWorkout(new CardioWorkout("Jogging", new Date(), 20));
         user1.logWorkout("Biking", 25);
 
         user2.setGoal("Burn 1500 kcal by next month");
-        user2.logWorkout(new StrengthWorkout("Bench Press", new Date(),3,12));
+        user2.addWorkout(new StrengthWorkout("Bench Press", new Date(), 3, 12));
         user2.logWorkout("StairMaster", 35);
 
         System.out.println("\n FREE USER");
@@ -28,5 +28,7 @@ public class Main {
         System.out.println(user2.generateMonthlyReport(05, 2026));
         user2.isOnTrackForGoal();
         user2.generateReport();
+        user2.exportReport("bob_report.csv");
+        System.out.println("Premium user report exported to csv");
     }
 }

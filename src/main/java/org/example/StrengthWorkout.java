@@ -1,4 +1,5 @@
 package org.example;
+
 import java.util.Date;
 
 public class StrengthWorkout extends Workout {
@@ -15,17 +16,17 @@ public class StrengthWorkout extends Workout {
     }
 
     @Override
-    public void logWorkout(String session){
+    public void logWorkout(String session) {
         System.out.println("Logged strength workout: " + session);
     }
 
     @Override
-    public double calculateCaloriesBurned(){
+    public double calculateCaloriesBurned() {
         return sets * repsPerSet * 0.5; //0.5 is currently a placeholder value
     }
 
     @Override
     public String getType() {
-        return "Strength Workout";
+        return "Strength";
     }
 }
